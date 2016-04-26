@@ -15,9 +15,11 @@ let kSavedItemsKey = "savedItems"
 class GeotificationsViewController: UIViewController, AddGeotificationsViewControllerDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
 
   @IBOutlet weak var mapView: MKMapView!
+ // var delegate: AddGeotificationsViewControllerDelegate!
 
   var geotifications = [Geotification]()
   let locationManager = CLLocationManager()
+  var Knott = Geotification(coordinate: CLLocationCoordinate2D(latitude: 41.703682, longitude: -86.233733), radius: 500, identifier: "Welcome to Knott Grilled Cheese", note: "Serving the best Grilled Cheese on campus!", eventType: .OnEntry)
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -26,6 +28,7 @@ class GeotificationsViewController: UIViewController, AddGeotificationsViewContr
     // 2
     locationManager.requestAlwaysAuthorization()
     // 3
+    
     loadAllGeotifications()
   }
 
@@ -88,7 +91,7 @@ class GeotificationsViewController: UIViewController, AddGeotificationsViewContr
   // MARK: AddGeotificationViewControllerDelegate
 
   func addGeotificationViewController(controller: AddGeotificationViewController, didAddCoordinate coordinate: CLLocationCoordinate2D, radius: Double, identifier: String, note: String, eventType: EventType) {
-    controller.dismissViewControllerAnimated(true, completion: nil)
+   // controller.dismissViewControllerAnimated(true, completion: nil)
     // 1
     let clampedRadius = (radius > locationManager.maximumRegionMonitoringDistance) ? locationManager.maximumRegionMonitoringDistance : radius
     
